@@ -1,6 +1,9 @@
 const express = require('express');
-const fs = require('fs').promises;
+const fs = require('fs');
+const bodyParser = require('body-parser');
 const axios = require('axios');
+const path = require('path'); 
+
 const app = express();
 const port = 3000;
 
@@ -28,6 +31,138 @@ function wrapHTML(content) {
           width: 30px;
           height: 30px;
         }
+          /* Importing Google font - Open Sans */
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&display=swap');
+
+.container {
+  height:100%;
+}
+.footer {
+  margin-top:100px;
+  position: relative;
+  bottom:0;
+  max-width: 100%;
+  width: 100%;
+  background: #10182F;
+  border-radius: 6px;
+}
+
+.footer .footer-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 3.5rem;
+  padding: 60px;
+}
+
+.footer-row .footer-col h4 {
+  color: #fff;
+  font-size: 1.2rem;
+  font-weight: 400;
+}
+
+.footer-col .links {
+  margin-top: 20px;
+}
+
+.footer-col .links li {
+  list-style: none;
+  margin-bottom: 10px;
+}
+
+.footer-col .links li a {
+  text-decoration: none;
+  color: #bfbfbf;
+}
+
+.footer-col .links li a:hover {
+  color: #fff;
+}
+
+.footer-col p {
+  margin: 20px 0;
+  color: #bfbfbf;
+  max-width: 300px;
+}
+
+.footer-col form {
+  display: flex;
+  gap: 5px;
+}
+
+.footer-col input {
+  height: 40px;
+  border-radius: 6px;
+  background: none;
+  width: 100%;
+  outline: none;
+  border: 1px solid #7489C6 ;
+  caret-color: #fff;
+  color: #fff;
+  padding-left: 10px;
+}
+
+.footer-col input::placeholder {
+  color: #ccc;
+}
+
+ .footer-col form button {
+  background: #fff;
+  outline: none;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: 0.2s ease;
+}
+
+.footer-col form button:hover {
+  background: #cecccc;
+}
+
+.footer-col .icons {
+  display: flex;
+  margin-top: 30px;
+  gap: 30px;
+  cursor: pointer;
+}
+
+.footer-col .icons i {
+  color: #afb6c7;
+}
+
+.footer-col .icons i:hover  {
+  color: #fff;
+}
+
+@media (max-width: 768px) {
+  .footer {
+    position: relative;
+    bottom: 0;
+    left: 0;
+    transform: none;
+    width: 100%;
+    border-radius: 0;
+  }
+
+  .footer .footer-row {
+    padding: 20px;
+    gap: 1rem;
+  }
+
+  .footer-col form {
+    display: block;
+  }
+
+  .footer-col form :where(input, button) {
+    width: 100%;
+  }
+
+  .footer-col form button {
+    margin: 10px 0 0 0;
+  }
+}
       </style>
     </head>
     <body>
@@ -44,9 +179,62 @@ function wrapHTML(content) {
           </ul>
         </div>
       </nav>
+      <section>
       <div class="container mt-5">
         ${content}
       </div>
+      </section>
+      <section class="footer">
+  <div class="footer-row">
+    <div class="footer-col">
+      <h4>Async Programming</h4>
+      <ul class="links">
+        <li><a href="#">Use Promises</a></li>
+        <li><a href="#">Avoid Callback Hell</a></li>
+        <li><a href="#">Leverage Async/Await</a></li>
+        <li><a href="#">Error Handling</a></li>
+        <li><a href="#">Non-blocking Code</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Best Practices</h4>
+      <ul class="links">
+        <li><a href="https://medium.com/@developerom/functions-in-node-js-fad18f1254fe">Use Named Functions</a></li>
+        <li><a href="https://docs.getdbt.com/terms/dry#:~:text=DRY%20is%20a%20software%20development,of%20modular%20and%20referenceable%20code.">Keep Code DRY</a></li>
+        <li><a href="https://courses.cs.washington.edu/courses/cse154/17au/styleguide/js/spacing-indentation-js.html#:~:text=Spacing%20and%20indentation%20should%20be,than%20the%20previous%20line's%20indentation.">Proper Indentation</a></li>
+        <li><a href="https://medium.com/nerd-for-tech/express-router-for-modular-code-f155d4406897">Modular Code</a></li>
+        <li><a href="https://sematext.com/blog/expressjs-best-practices/">Optimize Performance</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Resources</h4>
+      <ul class="links">
+        <li><a href="https://expressjs.com/en/5x/api.html">Documentation</a></li>
+        <li><a href="https://zellwk.com/blog/async-await-express/">Tutorials</a></li>
+        <li><a href="https://expressjs.com/en/resources/community.html">Community Forums</a></li>
+        <li><a href="https://expressjs.com/en/starter/examples.html">Code Examples</a></li>
+        <li><a href="https://quickref.me/express.html">Cheat Sheets</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+    <h4>Subscribe to Our Newsletter</h4>
+    <form action="/subscribe" method="POST" class="mt-3">
+      <div class="form-group">
+        <label for="inputEmail" style="color:white;">Email address</label>
+        <input type="email" class="form-control" id="inputEmail" name="email" placeholder="Your email" required>
+      </div>
+      <button type="submit" class="btn btn-primary" style="color:black;">SUBSCRIBE</button>
+    </form>
+      <div class="icons">
+        <i class="fa-brands fa-facebook-f"></i>
+        <i class="fa-brands fa-twitter"></i>
+        <i class="fa-brands fa-linkedin"></i>
+        <i class="fa-brands fa-github"></i>
+      </div>
+    </div>
+  </div>
+</section>
+
       <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
       <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
       <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
@@ -56,7 +244,7 @@ function wrapHTML(content) {
 }
 
 const routes = [
-  { path: '/', description: 'Home (You are here)' },
+  { path: '/', description: 'Home' },
   { path: '/sync', description: 'Synchronous route example' },
   { path: '/async-callback', description: 'Asynchronous route with callback' },
   { path: '/async-promise', description: 'Asynchronous route with Promise' },
@@ -109,27 +297,13 @@ app.get('/sync', (req, res) => {
 
 // Asynchronous route with callback
 app.get('/async-callback', (req, res) => {
-  fs.readFile('large-file.txt', 'utf8', (err, data) => {
-    if (err) {
-      return res.status(500).send(wrapHTML('<h1 class="text-danger">Error reading file</h1>'));
-    }
-    const content = `
-      <h1 class="mb-4">Asynchronous Route with Callback</h1>
-      <p class="lead">File content: ${data}</p>
-      <h2 class="mt-5">Code:</h2>
-      <pre class="bg-light p-3 mt-3"><code>
-app.get('/async-callback', (req, res) => {
-  fs.readFile('large-file.txt', 'utf8', (err, data) => {
-    if (err) {
-      return res.status(500).send('Error reading file');
-    }
-    res.send(data);
-  });
-});
-      </code></pre>
-    `;
-    res.send(wrapHTML(content));
-  });
+  const fs = require('node:fs');
+  try {
+    const data = fs.readFileSync('large-file.txt', 'utf8');
+    console.log(data);
+  } catch (err) {
+    console.error(err);
+  }
 });
 
 // Asynchronous route with Promise
@@ -562,16 +736,41 @@ displayUserName(123);
         </ul>
       </div>
     </details>
-
-    <h2 class="mt-5">Code:</h2>
-    <pre class="bg-light p-3 mt-3"><code>
-app.get('/code-challenge', (req, res) => {
-  // ... (challenge code here)
-});
-    </code></pre>
   `;
 
   res.send(wrapHTML(content));
+});
+
+// Middleware to parse incoming request bodies
+app.use(bodyParser.urlencoded({ extended: true }));
+
+// Route to handle form submission
+app.post('/subscribe', (req, res) => {
+  const { email } = req.body;
+
+  // Write email to a text file
+  writeEmailToFile(email, (err) => {
+    if (err) {
+      console.error('Error writing email to file:', err);
+      return res.status(500).send('Error subscribing. Please try again later.');
+    }
+
+    // Redirect to thank you page
+    res.redirect('/thankyou');
+  });
+});
+
+// Function to write email to a text file
+function writeEmailToFile(email, callback) {
+  const filePath = path.join(__dirname, 'subscribed_emails.txt');
+  const dataToWrite = `${email}\n`;
+
+  fs.appendFile(filePath, dataToWrite, 'utf8', callback);
+}
+
+// Route for the thank you page
+app.get('/thankyou', (req, res) => {
+  res.send('<h1>Thank you for subscribing!</h1>');
 });
 
 app.listen(port, () => {
